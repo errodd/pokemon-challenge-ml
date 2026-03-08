@@ -13,6 +13,8 @@ This file records the changes applied to notebooks/EDA3.ipynb after the review d
 - Added a further editorial compaction pass to reduce redundancy between the opening, audit transitions, and target framing.
 - Repositioned the target-analysis block so it now appears before the historical descriptive metrics block.
 - Reframed historical `WinRate` content and descriptive visualizations as explicitly secondary, EDA-only evidence.
+- Added explicit setup and data-loading section delimiters so the notebook now follows a clearer project structure from initialization to conclusions.
+- Compressed the final synthesis blocks to reduce repetition between target findings, preprocessing decisions, and executive summary.
 
 ## Review-driven content fixes
 
