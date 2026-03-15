@@ -1,0 +1,50 @@
+{
+  "target": "first_wins",
+  "drop_cols": [
+    "First_pokemon",
+    "Second_pokemon",
+    "Winner",
+    "Winner"
+  ],
+  "numeric_features": [
+    "first_stats_total",
+    "second_stats_total",
+    "diff_hp",
+    "abs_diff_hp",
+    "diff_attack",
+    "abs_diff_attack",
+    "diff_defense",
+    "abs_diff_defense",
+    "diff_sp_atk",
+    "abs_diff_sp_atk",
+    "diff_sp_def",
+    "abs_diff_sp_def",
+    "diff_speed",
+    "abs_diff_speed",
+    "diff_stats_total",
+    "abs_diff_stats_total"
+  ],
+  "categorical_features": [
+    "first_Type 1",
+    "second_Type 1",
+    "first_Type 2",
+    "second_Type 2",
+    "first_Generation",
+    "second_Generation"
+  ],
+  "binary_features": [
+    "first_Legendary",
+    "second_Legendary",
+    "first_is_mega",
+    "second_is_mega",
+    "same_type1",
+    "same_type2",
+    "same_generation",
+    "both_legendary"
+  ],
+  "notes": [
+    "No se usan Winner/WinRate/Wins/n_combats como features por leakage.",
+    "Se elimino duplicado exacto de combates antes de feature engineering.",
+    "Type 2 se interpreta como ausencia estructural con valor None."
+  ]
+}
