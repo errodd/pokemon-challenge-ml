@@ -127,3 +127,15 @@ Diferencia positiva:
 ## Estado final
 
 La version ajustada queda metodologicamente mas solida, mejor conectada con el EDA y con mejor validez para la fase de modelado.
+
+## 14) Guia rapida de estudio (resumen)
+Conceptos tecnicos que debes dominar para esta fase:
+- Unidad de analisis: una fila = una batalla.
+- Variable objetivo: `first_wins`.
+- Leakage: cualquier variable derivada de resultados historicos globales.
+- Feature engineering relacional: modelar diferencias entre oponentes (`diff_*`).
+- Validacion dependency-aware: evitar que el mismo emparejamiento aparezca en train y test.
+- Preprocessing por tipo: numericas, categoricas, binarias.
+- Reproducibilidad: versionado, pipeline serializado y manifiesto de features.
+
+Para estudio extendido, consulta el archivo `reports/guia_data_preparation_pokemon.md`.
