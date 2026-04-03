@@ -1,0 +1,5 @@
+speed_thr,total_thr,n_battles,legendary_adv_winrate,mega_adv_winrate,auc_diff_speed,auc_diff_stats_total
+3,20,427,37.50,66.67,0.98,0.52
+5,30,1202,36.00,48.78,0.98,0.52
+8,40,1921,43.14,53.52,0.98,0.52
+10,60,3588,47.62,50.33,0.98,0.50
