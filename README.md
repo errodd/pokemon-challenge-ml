@@ -1,49 +1,130 @@
 # pokemon-challenge-ml
 
-## Project Summary
+Proyecto de Machine Learning para predecir el ganador de una batalla 1v1 de Pokemon a partir de datos tabulares.
 
-This project aims to build a machine learning model that predicts the winner of a 1v1 Pokemon battle using structured data from a Pokedex table and a battle log.
+## 1) Que resuelve este proyecto
 
-The current phase is focused on **Exploratory Data Analysis (EDA)** to identify reliable predictive signals, detect data risks, and define robust preprocessing decisions before feature engineering and model training.
+Dado un par de Pokemon en combate (First_pokemon y Second_pokemon), el sistema predice si gana el primero.
 
-## Objective
+- Unidad de modelado: una batalla.
+- Target de entrenamiento: first_wins (binario).
+- Tipo de problema: clasificacion binaria.
 
-Given two Pokemon in a battle (`First_pokemon`, `Second_pokemon`), predict the battle winner.
+## 2) Estado actual
 
-- Modeling unit: one battle
-- Target for modeling: `first_wins` (binary)
-- Task type: binary classification
+El flujo principal ya esta implementado de extremo a extremo:
 
-## Data Sources
+1. EDA completado.
+2. Data Preparation completado.
+3. Modeling and Model Selection completado.
+4. Artefactos finales y reportes generados.
 
-- `data/pokemon.csv`: Pokemon-level attributes (`HP`, `Attack`, `Defense`, `Sp. Atk`, `Sp. Def`, `Speed`, `Type 1`, `Type 2`, `Generation`, `Legendary`)
-- `data/combats.csv`: battle records (`First_pokemon`, `Second_pokemon`, `Winner`)
+Metricas finales en test del modelo seleccionado (segun reports/pokemon_test_metrics.json):
 
-## Current Status (EDA)
+- Accuracy: 0.979
+- Balanced Accuracy: 0.979
+- F1: 0.978
+- ROC-AUC: 0.998
 
-The EDA work is concentrated in `notebooks/EDA.ipynb` as the final analysis notebook. Main outcomes so far:
+## 3) Guia rapida de navegacion
 
-- Structural data audit completed (types, missingness, duplicates, coverage checks)
-- Initial cardinality and feature-role analysis completed
-- Target definition and class behavior analysis completed
-- Clear separation between descriptive metrics and training-safe features
-- Strong evidence that **relative stat differences** are central predictive signals
-- Risk identification completed (leakage, repeated battles, high-cardinality identifiers)
+Si es tu primera vez en el repo, sigue este orden:
 
-## Repository Structure
+1. notebooks/EDA.ipynb
+2. notebooks/Data Preparation.ipynb
+3. notebooks/Modeling and Model Selection.ipynb
+4. reports/informe_presentacion_modeling.md
+5. reports/presentacion_powerpoint_modeling_completa.md
 
-- `notebooks/EDA.ipynb`: final professional EDA notebook (active)
-- `data/`: raw datasets
-- `reports/figures/`: exported EDA visualizations
-- `01_eda.ipynb`, `02_data_preparation.ipynb`: workflow support notebooks
+## 4) Estructura del repositorio
 
-## Next Step
+- data/
+	- pokemon.csv: atributos por Pokemon.
+	- combats.csv: historial de batallas y ganador.
 
-The next project stage is **Feature Engineering**, where EDA conclusions will be transformed into model-ready battle-level features and validated with leakage-safe evaluation.
+- notebooks/
+	- EDA.ipynb: analisis exploratorio y riesgos metodologicos.
+	- Data Preparation.ipynb: limpieza, features, split y pipeline.
+	- Modeling and Model Selection.ipynb: comparativa de modelos, tuning y evaluacion final.
 
-Planned improvements include:
+- artifacts/
+	- preprocess_pipeline_pokemon.joblib: pipeline de transformacion.
+	- split_data_pokemon.joblib: particiones train/test persistidas.
+	- feature_manifest_pokemon.json: contrato de features y decisiones.
+	- final_model_pipeline_pokemon.joblib: modelo final entrenado.
+	- model_card_pokemon.json: metadatos de seleccion y metricas.
 
-- Feature construction from relative Pokemon attributes
-- Encoding strategy for categorical variables with controlled cardinality
-- Validation-aware transformation pipeline
-- Preparation for baseline and advanced classification models
+- reports/
+	- EDA_transcripcion_es.md: narracion del EDA.
+	- guia_data_preparation_pokemon.md: guia detallada de preparacion.
+	- informe_presentacion_modeling.md: informe final para presentacion.
+	- pokemon_model_selection_results.csv: ranking final por CV-F1.
+	- pokemon_test_metrics.json: metricas de test del modelo final.
+	- presentacion_powerpoint_modeling_completa.md: version lista para slides.
+	- plantilla_presentacion_powerpoint.md: plantilla editable.
+	- figures/: imagenes exportadas.
+
+## 5) Como ejecutar localmente
+
+Requisitos:
+
+- Python 3.12 recomendado.
+- Entorno virtual.
+
+Pasos:
+
+1. Crear y activar entorno virtual.
+2. Instalar dependencias.
+3. Abrir notebooks en orden de flujo.
+
+Comandos sugeridos:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Luego:
+- Opcion A: abrir el proyecto en VS Code y ejecutar los notebooks desde el editor.
+- Opcion B: iniciar interfaz clasica de notebooks desde terminal con jupyter notebook.
+
+## 6) Flujo metodologico (resumen)
+
+1. EDA:
+- audita calidad de datos,
+- detecta leakage potencial,
+- confirma que las senales mas fuertes son relacionales (diff_speed, diff_stats_total).
+
+2. Data Preparation:
+- deduplica batallas,
+- crea features relacionales,
+- aplica split por grupos (matchup_key) para evitar dependencia train-test,
+- persiste pipeline y manifiesto.
+
+3. Modeling:
+- compara baselines y candidatos,
+- optimiza hiperparametros con Optuna,
+- selecciona modelo final por CV-F1,
+- evalua una sola vez en test hold-out,
+- guarda modelo final y model card.
+
+## 7) Donde ver cada resultado clave
+
+- Ranking final de modelos: reports/pokemon_model_selection_results.csv
+- Metricas finales de test: reports/pokemon_test_metrics.json
+- Modelo final serializado: artifacts/final_model_pipeline_pokemon.joblib
+- Contrato tecnico del modelo: artifacts/model_card_pokemon.json
+
+## 8) Convenciones importantes del proyecto
+
+- No usar variables con leakage (Winner, WinRate, Wins, n_combats) como features de entrenamiento.
+- Mantener el test hold-out aislado hasta la evaluacion final.
+- Conservar reproducibilidad con RANDOM_STATE fijo y artefactos persistidos.
+
+## 9) Siguiente trabajo recomendado
+
+- Analisis de robustez por subgrupos.
+- Reporte de dispersion por fold (mean +- std).
+- Explicabilidad local por instancia para casos criticos.
+- Monitoreo de drift si se pasa a entorno productivo.
