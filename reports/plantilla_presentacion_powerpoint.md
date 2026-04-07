@@ -5,6 +5,7 @@
 - En cada diapositiva reemplaza los bloques [COMPLETAR] con tu informacion.
 - No incluyas codigo en la presentacion.
 - Cada grafico o tabla debe ir con interpretacion y mensaje de negocio.
+- Usa formato numerico consistente de 3 decimales en metricas.
 - Duracion sugerida total: 10 a 15 minutos.
 
 ---
@@ -163,12 +164,16 @@ Usa una tabla simple:
 
 ## Diapositiva 11: Comparacion de modelos
 
+Nota metodologica:
+- CV-F1 se usa para comparar todos los modelos.
+- Accuracy, Balanced Accuracy y ROC-AUC deben reportarse en test solo para el modelo final seleccionado (si no aplica, usar N/D).
+
 | Modelo | CV-F1 | Accuracy | Balanced Accuracy | ROC-AUC | Comentario |
 |---|---:|---:|---:|---:|---|
-| [Baseline] | [ ] | [ ] | [ ] | [ ] | [COMPLETAR] |
-| [Modelo 2] | [ ] | [ ] | [ ] | [ ] | [COMPLETAR] |
-| [Modelo 3] | [ ] | [ ] | [ ] | [ ] | [COMPLETAR] |
-| [Modelo final] | [ ] | [ ] | [ ] | [ ] | [COMPLETAR] |
+| [Baseline] | [ ] | N/D | N/D | N/D | [COMPLETAR] |
+| [Modelo 2] | [ ] | N/D | N/D | N/D | [COMPLETAR] |
+| [Modelo 3] | [ ] | N/D | N/D | N/D | [COMPLETAR] |
+| [Modelo final] | [ ] | [ ] (test) | [ ] (test) | [ ] (test) | [COMPLETAR] |
 
 **Interpretacion de la comparacion:**
 [COMPLETAR]

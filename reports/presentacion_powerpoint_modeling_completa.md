@@ -77,7 +77,7 @@ La unidad analitica final es la batalla, por eso el dataset debe transformarse d
 |---|---|---|
 | Numericas | HP, Attack, Defense, Sp. Atk, Sp. Def, Speed | Base para construir ventajas relativas |
 | Categoricas | Type 1, Type 2, Generation | Contexto estructural de matchup |
-| Binarias | Legendary, is_mega, variables de coincidencia | Senal contextual complementaria |
+| Binarias | Legendary, is_mega, variables de coincidencia | señal contextual complementaria |
 | Objetivo | first_wins | Variable a predecir |
 | Excluidas por leakage | Winner, WinRate, Wins, n_combats | Prohibidas para entrenamiento |
 
@@ -87,11 +87,11 @@ La estructura del problema exige priorizar variables relacionales (diferencias e
 ---
 
 ## Diapositiva 6: Principales insights del EDA (hallazgos)
-**Hallazgo 1:** La senal principal es relacional, no individual.
+**Hallazgo 1:** La señal principal es relacional, no individual.
 - Evidencia: diff_speed (corr 0.68, AUC univariado orientado 0.93).
 - Implicacion para modelado: priorizar diff_* como nucleo del set de features.
 
-**Hallazgo 2:** La fuerza total relativa tambien aporta senal fuerte.
+**Hallazgo 2:** La fuerza total relativa tambien aporta señal fuerte.
 - Evidencia: diff_stats_total (corr 0.47, AUC 0.77).
 - Implicacion para modelado: retener stat-based relational features como bloque principal.
 
@@ -167,14 +167,15 @@ Se cubrio un espectro de complejidad: desde referencia minima (Dummy), modelos i
 ## Diapositiva 11: Comparacion de modelos
 | Modelo | CV-F1 | Accuracy | Balanced Accuracy | ROC-AUC | Comentario |
 |---|---:|---:|---:|---:|---|
-| Dummy | 0.0000 | - | - | - | Referencia minima, sin capacidad predictiva util |
-| Logistic Regression | 0.8803 | - | - | - | Baseline interpretable, buen piso lineal |
-| Decision Tree | 0.9509 | - | - | - | Mejora no lineal, mayor riesgo de varianza |
-| Random Forest tuned | 0.9679 | - | - | - | Ensamble robusto con mejora marcada |
-| HistGradientBoosting tuned (final) | 0.9731 | 0.9760 (test) | 0.9759 (test) | 0.9973 (test) | Mejor equilibrio global y consistencia CV-test |
+| Dummy | 0.000 | - | - | - | Referencia minima, sin capacidad predictiva util |
+| Logistic Regression | 0.953 | - | - | - | Baseline lineal fuerte y estable |
+| Decision Tree | 0.959 | - | - | - | Mejor baseline; capta no linealidad moderada |
+| Random Forest tuned | 0.971 | - | - | - | Tuning con mejora marcada (+0.014 CV-F1) |
+| HistGradientBoosting tuned (final) | 0.975 | 0.979 (test) | 0.979 (test) | 0.998 (test) | Mejor equilibrio global y consistencia CV-test |
 
 **Interpretacion de la comparacion:**
 La mejora de baselines a ensambles es clara. El mejor CV-F1 lo obtiene HistGradientBoosting tuned y ademas confirma rendimiento alto en test.
+La actualizacion final de Optuna elevo el rendimiento sin romper la coherencia metodologica entre CV y test.
 
 ---
 
@@ -238,7 +239,7 @@ Recomendar enfrentamientos donde exista ventaja relativa clara en velocidad y fu
 ## Diapositiva 16: Conclusion
 **Resumen de resultados (3 bullets):**
 - El problema es altamente predecible con representacion relacional por batalla.
-- Las senales dominantes son diff_speed y diff_stats_total.
+- Las señales dominantes son diff_speed y diff_stats_total.
 - HistGradientBoosting tuned logra el mejor equilibrio de rendimiento y robustez.
 
 **Que se puede concluir del modelo:**

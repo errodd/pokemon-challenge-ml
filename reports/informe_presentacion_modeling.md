@@ -138,26 +138,33 @@ Si, se incluyeron tres baselines (Dummy, Logistic y Decision Tree).
 
 | Modelo | CV-F1 |
 |---|---:|
-| HistGradientBoosting tuned | 0.9731 |
-| HistGradientBoosting | 0.9683 |
-| Random Forest tuned | 0.9679 |
-| Decision Tree | 0.9509 |
-| Random Forest | 0.9497 |
-| Logistic Regression | 0.8803 |
-| Dummy | 0.0000 |
+| HistGradientBoosting tuned | 0.975 |
+| HistGradientBoosting | 0.972 |
+| Random Forest tuned | 0.971 |
+| Decision Tree | 0.959 |
+| Random Forest | 0.957 |
+| Logistic Regression | 0.953 |
+| Dummy | 0.000 |
 
 Interpretacion:
 - Existe ganancia real al pasar de baselines a ensambles.
-- El tuning mejora especialmente Random Forest y consolida a HistGradientBoosting como lider.
+- El tuning mejora especialmente Random Forest (+0.014 CV-F1) y tambien eleva HistGradientBoosting (+0.003 CV-F1).
+- La ventaja del modelo final sobre el mejor baseline se mantiene clara (+0.016 CV-F1).
 
 Resultados finales en test del modelo seleccionado:
-- Accuracy: 0.9760
-- Balanced Accuracy: 0.9759
-- F1: 0.9746
-- ROC-AUC: 0.9973
+- Accuracy: 0.979
+- Balanced Accuracy: 0.979
+- F1: 0.978
+- ROC-AUC: 0.998
 
 Interpretacion:
 Desempeno alto y consistente con CV, sin evidencia fuerte de degradacion fuera de muestra.
+La brecha entre CV y test es pequena y favorable, lo que respalda buena generalizacion.
+
+### d) Actualizacion post-Optuna y correcciones aplicadas
+- Se sincronizaron todas las tablas y conclusiones con los artefactos finales persistidos.
+- Se corrigieron valores legacy de una corrida previa (0.973/0.976/0.975/0.997) por los valores finales consolidados (0.975/0.979/0.978/0.998).
+- Se estandarizo la presentacion de metricas a 3 decimales para mantener consistencia visual y trazabilidad.
 
 ## 7. Seleccion del modelo final
 
