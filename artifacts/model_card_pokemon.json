@@ -9,10 +9,10 @@
   },
   "selection_metric": "cv_f1_mean",
   "test_metrics": {
-    "accuracy": 0.9759850296288596,
-    "balanced_accuracy": 0.9759075861368018,
-    "f1": 0.9745958429561201,
-    "roc_auc": 0.9972885717278839
+    "accuracy": 0.9794157396818796,
+    "balanced_accuracy": 0.9793314732770038,
+    "f1": 0.9782178217821782,
+    "roc_auc": 0.9979128783910631
   },
   "data_artifacts": {
     "preprocess_pipeline": "../artifacts/preprocess_pipeline_pokemon.joblib",
