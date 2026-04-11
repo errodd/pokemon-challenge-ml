@@ -47,12 +47,19 @@ Si es tu primera vez en el repo, sigue este orden:
 	- Data Preparation.ipynb: limpieza, features, split y pipeline.
 	- Modeling and Model Selection.ipynb: comparativa de modelos, tuning y evaluacion final.
 
+- src/
+	- predict.py: modulo de inferencia (ingenieria de features + prediccion).
+
 - artifacts/
 	- preprocess_pipeline_pokemon.joblib: pipeline de transformacion.
 	- split_data_pokemon.joblib: particiones train/test persistidas.
 	- feature_manifest_pokemon.json: contrato de features y decisiones.
 	- final_model_pipeline_pokemon.joblib: modelo final entrenado.
 	- model_card_pokemon.json: metadatos de seleccion y metricas.
+
+- app.py: aplicacion web Gradio para prediccion interactiva.
+- requirements-app.txt: dependencias de la aplicacion de despliegue.
+- Dockerfile: imagen Docker lista para produccion.
 
 - reports/
 	- EDA_transcripcion_es.md: narracion del EDA.
@@ -128,3 +135,47 @@ Luego:
 - Reporte de dispersion por fold (mean +- std).
 - Explicabilidad local por instancia para casos criticos.
 - Monitoreo de drift si se pasa a entorno productivo.
+
+## 10) Despliegue de la aplicacion web
+
+El modelo esta listo para ser usado a traves de una interfaz web construida con [Gradio](https://gradio.app).
+
+### Archivos clave del despliegue
+
+- `app.py`: aplicacion Gradio (interfaz de usuario).
+- `src/predict.py`: logica de ingenieria de features e inferencia.
+- `requirements-app.txt`: dependencias minimas para ejecutar la app.
+- `Dockerfile`: imagen Docker lista para produccion.
+
+### Opcion A: ejecucion local
+
+```bash
+python -m venv venv
+source venv/bin/activate        # en Windows: venv\Scripts\activate
+pip install -r requirements-app.txt
+python app.py
+```
+
+Abre el navegador en `http://localhost:7860`.
+
+### Opcion B: Docker
+
+```bash
+docker build -t pokemon-predictor .
+docker run -p 7860:7860 pokemon-predictor
+```
+
+Abre el navegador en `http://localhost:7860`.
+
+### Opcion C: Hugging Face Spaces (despliegue publico gratuito)
+
+1. Crea un nuevo Space en [huggingface.co/spaces](https://huggingface.co/spaces) eligiendo SDK **Gradio**.
+2. Sube `app.py`, `src/`, `artifacts/`, `data/pokemon.csv` y `requirements-app.txt`.
+3. Hugging Face construye e inicia la app automaticamente.
+
+### Uso de la interfaz
+
+1. Selecciona el primer Pokemon en el desplegable izquierdo.
+2. Selecciona el segundo Pokemon en el desplegable derecho.
+3. Pulsa **Predict Battle**.
+4. La app muestra el ganador predicho, el nivel de confianza y una tabla comparativa de estadisticas.
