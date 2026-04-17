@@ -41,6 +41,9 @@ Con una representacion relacional por batalla, el problema es altamente predecib
 **Que problema resolvemos:**
 Predecir el ganador de una batalla 1v1 entre dos Pokemon, usando atributos del Pokedex y registro historico de combates.
 
+```
+El objetivo es predecir el ganador de una batalla Pokémon basándose en los atributos y estadísticas de los combatientes. Este modelo predictivo tiene aplicaciones en estrategia de juego, análisis competitivo y comprensión de mecánicas de combate. El reto principal radica en capturar las complejas interacciones entre tipos, estadísticas y habilidades que determinan el resultado de cada enfrentamiento.
+```
 **Tipo de problema (clasificacion o regresion):**
 Clasificacion binaria.
 - Clase 1: gana el primer Pokemon.
@@ -258,3 +261,35 @@ Seleccion de enfrentamientos favorables, priorizacion tactica y recomendaciones 
 **Q&A**
 
 ---
+
+## Notas de apoyo visual (Diapositivas 6-17)
+
+Usa este bloque como guia para agregar imagenes/tablas sin perder trazabilidad de origen.
+
+| Diapositiva | Visual recomendado | De donde se obtiene | Nota de uso en exposicion |
+|---|---|---|---|
+| 6. Insights del EDA | Heatmap de correlaciones relacionales | reports/figures/stats_vs_win_probability_correlation.png | Resaltar que diff_speed y diff_stats_total concentran la señal. |
+| 6. Insights del EDA | Tabla corta de top señales (corr + AUC) | reports/feature_signal_summary.csv | Mostrar solo top 5 para no saturar; cerrar con implicacion para modelado. |
+| 7. EDA y calidad de datos | Vista distribucional general del dataset | reports/figures/pokemon_distributions_overview.png | Conectar visualmente calidad/cobertura con decisiones de limpieza. |
+| 7. EDA y calidad de datos | Evidencia de duplicados y sensibilidad | reports/robustness_threshold_sensitivity.csv | Usar como mini-tabla para explicar por que se deduplica y se controla dependencia. |
+| 8. Data Preparation | Diagrama de flujo del pipeline de preparacion (hecho en slides) | Fuente de contenido: notebooks/Data Preparation.ipynb y reports/guia_data_preparation_pokemon.md | Mostrar pasos: dedup -> feature engineering -> split por grupos -> preprocess pipeline. |
+| 9. Modelado | Grafico de familias de modelos (baseline vs candidatos) | Fuente de contenido: notebooks/Modeling and Model Selection.ipynb | Puede ser visual manual (bloques) para enfatizar criterio de complejidad incremental. |
+| 10. Metricas de evaluacion | Tarjetas de metricas con definicion corta | Fuente de contenido: reports/informe_presentacion_modeling.md | Evitar grafico decorativo: priorizar lectura practica de cada metrica. |
+| 11. Comparacion de modelos | Tabla comparativa actual (ya incluida) | reports/pokemon_model_selection_results.csv + reports/pokemon_test_metrics.json | Mantener nota metodologica: CV para ranking multi-modelo y test para modelo final. |
+| 11. Comparacion de modelos | Barra horizontal de CV-F1 por modelo | reports/pokemon_model_selection_results.csv | Orden descendente para visualizar brecha entre baseline y ensambles tuneados. |
+| 12. Seleccion final | Matriz de decision (rendimiento, robustez, costo, alineacion) | Fuente de contenido: reports/informe_presentacion_modeling.md | Visual tipo semaforo para justificar decision mas alla de un solo numero. |
+| 13. Interpretabilidad | Tabla de variables mas importantes (ya listadas) | reports/feature_signal_summary.csv | Aclarar que es evidencia de señal global en entrenamiento (alineada con EDA). |
+| 13. Interpretabilidad | Curvas por deciles (relacion stats-ganar) | reports/figures/stats_vs_win_probability_deciles.png | Mostrar monotonia de la señal y traducir a regla tactica interpretable. |
+| 14. Limitaciones | Heatmap de enfrentamientos por tipo (sparsity y heterogeneidad) | reports/figures/type1_matchup_heatmap_corrected.png | Usar para justificar riesgo de combinaciones raras y generalizacion por subgrupos. |
+| 14. Limitaciones | Top10 de winrate por tipo con cautela muestral | reports/figures/type1_top10_winrate_corrected.png | Aclarar que es descriptivo y no causal; evitar sobreinterpretacion. |
+| 15. Proximos pasos | Roadmap visual de 3 bloques (robustez, umbral, explicabilidad local) | Fuente de contenido: reports/informe_presentacion_modeling.md | Timeline simple con prioridad inmediata vs mediano plazo. |
+| 16. Conclusion | Slide de KPIs finales (cards) | reports/pokemon_test_metrics.json + reports/pokemon_model_selection_results.csv | Incluir 3 mensajes de negocio ligados a F1/ROC-AUC/consistencia CV-test. |
+| 17. Cierre y preguntas | Slide limpia con QR o enlace al repo/reportes | README.md + reports/informe_presentacion_modeling.md | Facilita preguntas tecnicas y trazabilidad post-presentacion. |
+
+### Nota de trazabilidad rapida
+
+- Figuras EDA: reports/figures/*.png
+- Ranking de modelos: reports/pokemon_model_selection_results.csv
+- Metricas finales test: reports/pokemon_test_metrics.json
+- Narrativa tecnica: reports/informe_presentacion_modeling.md
+- Soporte de preparacion: reports/guia_data_preparation_pokemon.md

@@ -107,14 +107,28 @@ Candidatos de mayor capacidad:
 
 ### b) Justificacion de eleccion de modelos
 - Dummy: piso mínimo de referencia.
+    - Permite validar que el problema tiene señal real y que el pipeline supera una estrategia trivial.
+    - Si un modelo no supera al Dummy, no hay valor predictivo operativo.
 - Logistic: baseline lineal interpretable.
+    - Sirve para medir cuánta señal puede capturarse con una frontera lineal simple.
+    - Es estable, rápida de entrenar y fácil de explicar en términos de efecto promedio de variables.
+    - Funciona como punto de comparación para justificar el salto a modelos no lineales.
 - Decision Tree: baseline no lineal simple.
+    - Captura reglas tipo umbral e interacciones básicas entre variables sin asumir linealidad.
+    - Es útil para reflejar la lógica de "ventaja relativa" entre rivales (por ejemplo, cortes sobre diff_speed).
+    - Se incluyó también para observar el trade-off interpretabilidad local vs riesgo de sobreajuste.
 - Random Forest: ensamble robusto con menor varianza.
+    - Promedia muchos árboles para reducir inestabilidad del árbol individual.
+    - Tolera bien ruido y relaciones no lineales en datos tabulares heterogéneos.
+    - Se eligió como candidato fuerte cuando se espera ganancia por no linealidad con buena robustez.
 - HistGradientBoosting: alto rendimiento en tabular y capacidad para no linealidad compleja.
     - Funciona muy bien en ese tipo de datos estructurados.
     - Logra métricas altas (por ejemplo F1, AUC, accuracy) y estables.
     - Generaliza bien fuera de muestra.
     - Suele superar o igualar a baselines en problemas de clasificación/regresión con columnas numéricas y categóricas.
+    - Implementa boosting eficiente y suele capturar interacciones finas entre variables relacionales.
+    - Entrega buen equilibrio entre desempeño, estabilidad y costo computacional en datasets medianos/grandes.
+    - Fue clave incluirlo para contrastar dos familias de ensamble: bagging (Random Forest) vs boosting (HGB).
 - Nota breve: aqui, "tabular" significa datos en formato tabla (filas = batallas, columnas = variables).
 
 ### c) Modelo baseline incluido
