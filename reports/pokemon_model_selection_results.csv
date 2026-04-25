@@ -1,0 +1,8 @@
+model,cv_f1_mean
+hist_gradient_boosting_tuned,0.9752580521375526
+hist_gradient_boosting,0.9719999544006436
+random_forest_tuned,0.9708241484347674
+decision_tree,0.9588395600596252
+random_forest,0.9569776456078465
+logistic_regression,0.9533736879993766
+dummy,0.0

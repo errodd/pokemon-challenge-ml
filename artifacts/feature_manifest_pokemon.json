@@ -1,5 +1,25 @@
 {
   "target": "first_wins",
+  "global_config": {
+    "id_col": "#",
+    "target_col": "first_wins",
+    "leakage_columns": [
+      "Winner",
+      "WinRate",
+      "Wins",
+      "n_combats"
+    ],
+    "stats_cols": [
+      "HP",
+      "Attack",
+      "Defense",
+      "Sp. Atk",
+      "Sp. Def",
+      "Speed"
+    ],
+    "test_size": 0.2,
+    "random_state": 29
+  },
   "drop_cols": [
     "First_pokemon",
     "Second_pokemon",
@@ -12,18 +32,28 @@
     "second_stats_total",
     "diff_hp",
     "abs_diff_hp",
+    "first_has_adv_hp",
     "diff_attack",
     "abs_diff_attack",
+    "first_has_adv_attack",
     "diff_defense",
     "abs_diff_defense",
+    "first_has_adv_defense",
     "diff_sp_atk",
     "abs_diff_sp_atk",
+    "first_has_adv_sp_atk",
     "diff_sp_def",
     "abs_diff_sp_def",
+    "first_has_adv_sp_def",
     "diff_speed",
     "abs_diff_speed",
+    "first_has_adv_speed",
     "diff_stats_total",
-    "abs_diff_stats_total"
+    "abs_diff_stats_total",
+    "first_has_adv_stats_total",
+    "diff_generation",
+    "diff_legendary",
+    "diff_is_mega"
   ],
   "categorical_features": [
     "first_Type 1",
@@ -31,7 +61,9 @@
     "first_Type 2",
     "second_Type 2",
     "first_Generation",
-    "second_Generation"
+    "second_Generation",
+    "type1_pair",
+    "type2_pair"
   ],
   "binary_features": [
     "first_Legendary",
@@ -43,9 +75,36 @@
     "same_generation",
     "both_legendary"
   ],
+  "feature_decisions": [
+    {
+      "feature_group": "dropped",
+      "n_features": 5,
+      "feature_examples": "First_pokemon, Second_pokemon, Winner, matchup_key, Winner",
+      "rationale": "Identifiers/leakage-prone columns excluded before preprocessing."
+    },
+    {
+      "feature_group": "numeric",
+      "n_features": 26,
+      "feature_examples": "first_stats_total, second_stats_total, diff_hp, abs_diff_hp, first_has_adv_hp, diff_attack, abs_diff_attack, first_has_adv_attack",
+      "rationale": "Relative advantage signals for battle-level predictive structure."
+    },
+    {
+      "feature_group": "categorical",
+      "n_features": 8,
+      "feature_examples": "first_Type 1, second_Type 1, first_Type 2, second_Type 2, first_Generation, second_Generation, type1_pair, type2_pair",
+      "rationale": "Type/generation context and pairwise relational interactions."
+    },
+    {
+      "feature_group": "binary",
+      "n_features": 8,
+      "feature_examples": "first_Legendary, second_Legendary, first_is_mega, second_is_mega, same_type1, same_type2, same_generation, both_legendary",
+      "rationale": "Low-cardinality context flags with direct tactical meaning."
+    }
+  ],
   "notes": [
     "Winner/WinRate/Wins/n_combats are excluded as features due to leakage.",
     "Exact duplicate battles were removed before feature engineering.",
-    "Type 2 is treated as structural absence with value None."
+    "Type 2 is treated as structural absence with value None.",
+    "Relational pair features (type1_pair/type2_pair) are included for interaction modeling."
   ]
 }

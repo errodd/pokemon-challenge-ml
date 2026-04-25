@@ -1,0 +1,52 @@
+La presentación debe cubrir obligatoriamente los siguientes puntos:
+1. Contexto del problema
+a. Explicar claramente qué problema están resolviendo
+b. Indicar si es un problema de clasificación o regresión
+c. Describir por qué este problema es relevante (pueden plantearlo como un caso de uso real)
+2. Entendimiento del dataset
+a. Origen del dataset
+b. Qué representa cada fila
+c. Descripción general de las variables (agrupadas en numéricas, categóricas, variable objetivo, 
+etc.)
+3. Principales insights del EDA
+a. Presentar hallazgos relevantes (no solo gráficos)
+b. Relacionar variables con la variable objetivo
+c. Identificar problemas en los datos (missing values, outliers, sesgos, etc.)
+d. Explicar por qué estos hallazgos son importantes para el modelado
+4. Data Preparation
+a. Describir las transformaciones realizadas
+b. Manejo de valores faltantes
+c. Encoding de variables categóricas
+d. Feature engineering
+e. Justificar cada decisión tomada
+5. Modelado
+a. Modelos utilizados (mínimo 2 o 3)
+b. Justificación de por qué se eligieron esos modelos
+c. Incluir al menos un modelo baseline
+6. Evaluación de modelos
+a. Métricas utilizadas (adecuadas al tipo de problema)
+b. Explicación de qué mide cada métrica
+c. Comparación clara entre modelos (preferiblemente en una tabla)
+7. Selección del modelo final
+a. Indicar cuál modelo fue seleccionado
+b. Justificar la decisión (no solo por tener mejor métrica, sino considerando el contexto)
+8. Interpretabilidad
+a. Explicar qué variables son más importantes
+b. Interpretar el comportamiento del modelo (coeficientes, feature importance, etc.)
+9. Limitaciones del proyecto
+a. Problemas del dataset
+b. Posibles riesgos como data leakage
+c. Restricciones del enfoque utilizado
+10. Próximos pasos
+a. Qué mejoras implementarían
+b. Qué harían si tuvieran más tiempo o más datos
+11. Conclusión
+a. Resumen claro de los resultados
+b. Qué se puede concluir a partir del modelo
+c. Qué decisiones podrían tomarse con estos resultados
+Consideraciones importantes:
+● No deben mostrar código en la presentación
+● No deben limitarse a mostrar gráficos sin explicación
+● Cada resultado debe estar acompañado de interpretación
+● Se evaluará fuertemente la claridad, la justificación de decisiones y el dominio del
+tema

@@ -1,0 +1,22 @@
+{
+  "selected_model": "hist_gradient_boosting_tuned",
+  "random_state": 29,
+  "cv_strategy": {
+    "type": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 29
+  },
+  "selection_metric": "cv_f1_mean",
+  "test_metrics": {
+    "accuracy": 0.9794157396818796,
+    "balanced_accuracy": 0.9793314732770038,
+    "f1": 0.9782178217821782,
+    "roc_auc": 0.9979128783910631
+  },
+  "data_artifacts": {
+    "preprocess_pipeline": "../artifacts/preprocess_pipeline_pokemon.joblib",
+    "split_data": "../artifacts/split_data_pokemon.joblib",
+    "feature_manifest": "../artifacts/feature_manifest_pokemon.json"
+  }
+}

@@ -1,0 +1,13 @@
+feature,corr_with_first_wins,auc_univariate_oriented
+diff_speed,0.68,0.93
+diff_stats_total,0.47,0.77
+diff_attack,0.36,0.71
+diff_sp_atk,0.35,0.70
+diff_sp_def,0.22,0.64
+diff_hp,0.19,0.63
+diff_legendary,0.24,0.59
+diff_defense,0.08,0.56
+diff_is_mega,0.16,0.55
+same_type2,0.01,0.50
+both_dual_type,0.00,0.50
+same_type1,-0.00,0.50
